@@ -1,0 +1,130 @@
+//door Thijs Koolhaas
+//declare LEDs
+int green = 2;
+int orange = 3;
+int red = 4; 
+int greenn = 8;
+int redd = 5;
+
+//declare vibration motor
+int vibin = 9;
+
+//declare button
+int btnPedestrian = 6;
+
+
+void setup() {
+  //setting the LED pins to output
+  pinMode(green, OUTPUT);
+  pinMode(orange, OUTPUT);
+  pinMode(red, OUTPUT);
+  pinMode(greenn, OUTPUT);
+  pinMode(redd, OUTPUT);
+  
+  //turn the LEDs off
+  digitalWrite(green, LOW);
+  digitalWrite(orange, LOW);
+  digitalWrite(red, LOW);
+  digitalWrite(greenn, LOW);
+  digitalWrite(redd, LOW);
+  
+  //setting the buttons to input
+  pinMode(btnPedestrian, INPUT);
+  
+  //for the serial monitor
+  Serial.begin(9600);
+}
+
+void loop(){
+  //put your main code here
+  digitalWrite(red, LOW);
+  delay(1000);
+  digitalWrite(green, HIGH);
+  digitalWrite(redd, HIGH);
+  digitalWrite(greenn, LOW);
+  //Serial.printIn("GREEN");
+ greenLight();
+  
+  digitalWrite(green, LOW);
+  digitalWrite(orange, HIGH);
+  digitalWrite(redd, HIGH);
+
+  //Serial.printIn("\nORANGE");
+  delay(2000);
+  
+  digitalWrite(orange, LOW);
+  digitalWrite(red, HIGH);
+  delay(1000);
+  digitalWrite(redd, LOW);
+  digitalWrite(greenn, HIGH);
+  //Serial.printIn("RED");
+  delay(17300);
+  
+  digitalWrite(greenn, LOW);
+  delay(300);
+  digitalWrite(greenn, HIGH);
+  delay(300);
+  digitalWrite(greenn, LOW);
+  delay(300);
+  digitalWrite(greenn, HIGH);
+  delay(300);
+  digitalWrite(greenn, LOW);
+  delay(300);
+  digitalWrite(greenn, HIGH);
+  delay(300);
+  digitalWrite(greenn, LOW);
+  delay(300);
+  digitalWrite(greenn, HIGH);
+  delay(300);
+  digitalWrite(greenn, LOW);
+ 
+  
+  
+  digitalWrite(redd, HIGH);
+  
+    
+  delay(2000);
+  digitalWrite(red, HIGH);
+  delay(1000);
+}
+
+void greenLight(){
+  //checking for pedestria button
+  for (int i = 1; i < 31; i++) {
+    int state = digitalRead(btnPedestrian);
+    
+    if (state == 0) {
+      Serial.print(i);
+      delay(1000);
+      Serial.print(", ");
+    }
+    else if (state == 1){
+     Serial.print("PEDESTRIAN CROSSING"); 
+      delay(5000);
+      return;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
